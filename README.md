@@ -2,7 +2,7 @@
 
 The andela shopping list application allows users securely store their shopping lists. 
 
-## Techonlogies
+## Technologies
 
 This application has made use of CSS3, HTML5, and boostrap twitter.
 
