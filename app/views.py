@@ -68,11 +68,11 @@ def create_bucket_list():
         return redirect('/index')
 
     return render_template("shopping-list/create.html",
-                           title='Create Bucket List',
+                           title='Create Shopping List',
                            form=form)
 
-@app.route("/update/shopping-list/<bucket_list_id>", methods=['GET', 'POST'])
-def update_bucket_list(bucket_list_id):
+@app.route("/update/shopping-list/<shopping_list_id>", methods=['GET', 'POST'])
+def update_bucket_list(shopping_list_id):
     form = BucketListForm()
 
     if form.validate_on_submit():
@@ -81,18 +81,18 @@ def update_bucket_list(bucket_list_id):
         return redirect('/index')
 
     return render_template("shopping-list/update.html",
-                           title='Update Bucket List',
+                           title='Update Shopping List',
                            form=form)
 
 
-@app.route("/view/bucket-lists", methods=['GET', 'POST'])
+@app.route("/view/shopping-lists", methods=['GET', 'POST'])
 def view_bucket_list():
     return render_template("shopping-list/view.html",
-                           title='View Bucket Lists')
+                           title='View Shopping Lists')
 
 
-@app.route("/delete/shopping-list/<bucket_list_id>", methods=['POST'])
-def delete_bucket_list(bucket_list_id):
+@app.route("/delete/shopping-list/<shopping_list_id>", methods=['POST'])
+def delete_bucket_list(shopping_list_id):
     return "Hello Worldj"
 
 
@@ -100,8 +100,8 @@ def delete_bucket_list(bucket_list_id):
 
 
 # bucket list items crud routes
-@app.route("/create/<bucket_list>/item", methods=['GET', 'POST'])
-def create_bucket_list_item(bucket_list):
+@app.route("/create/<shopping_list>/item", methods=['GET', 'POST'])
+def create_bucket_list_item(shopping_list):
     form = BucketListItemForm()
 
     if form.validate_on_submit():
@@ -110,12 +110,12 @@ def create_bucket_list_item(bucket_list):
         return redirect('/index')
 
     return render_template("shopping-list-item/create.html",
-                           title='View Bucket List Items',
+                           title='View Shopping List Items',
                            form=form)
 
 
-@app.route("/update/<bucket_list>/item/<item_id>", methods=['GET', 'POST'])
-def update_bucket_list_item(bucket_list, item_id):
+@app.route("/update/<shopping_list>/item/<item_id>", methods=['GET', 'POST'])
+def update_bucket_list_item(shopping_list, item_id):
     form = BucketListItemForm()
 
     if form.validate_on_submit():
@@ -124,14 +124,14 @@ def update_bucket_list_item(bucket_list, item_id):
         return redirect('/index')
 
     return render_template("shopping-list-item/update.html",
-                           title='Update Bucket List item',
+                           title='Update Shopping List item',
                            form=form)
 
 
-@app.route("/view/<bucket_list>/items", methods=['GET', 'POST'])
+@app.route("/view/<shopping_list>/items", methods=['GET', 'POST'])
 def view_bucket_list_item(bucket_list):
     return render_template("shopping-list-item/view.html",
-                           title='View Bucket List Items')
+                           title='View Shopping List Items')
 
 
 @app.route("/delete/shopping-list-item/<item_id>", methods=['POST'])
