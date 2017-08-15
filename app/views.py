@@ -90,7 +90,7 @@ def login():
         users = session["users"]
         for user in users:
             if user["username"] == form.username.data.strip() and user["password"] == form.password.data.strip():
-                session["logged_in"] = form.username.data.strip().title()
+                session["logged_in"] = {"username": form.username.data.strip().title(), "id": user["id"]}
                 return redirect('/view/shopping-lists')
 
         flash({
