@@ -92,9 +92,16 @@ def login():
 
 @app.route("/logout", methods=['GET'])
 def logout():
-    return render_template("auth/logout.html",
-                           title='Logout')
+
     create_application_session_keys()
+    session["logged_in"] = None
+
+    flash({
+            "message":
+            'You have successfully logged out! Come back soon'
+        })
+
+    return redirect('/login')
 
 
 
