@@ -1,8 +1,10 @@
-{% extends "base.html" %}
+{% extends "base_logged_in.html" %}
 
 {% block content %}
     <h1>Hi, {{ user.nickname }}!</h1>
     {% for post in posts %}
     <div><p>{{ post.author.nickname }} says: <b>{{ post.body }}</b></p></div>
     {% endfor %}
+<div class="col-xs-12" style="background-color: #fff">
+</div>
 {% endblock %}

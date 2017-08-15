@@ -1,6 +1,8 @@
-{% extends "base.html" %}
+{% extends "base_logged_in.html" %}
 
 {% block content %}
+
+<div class="col-xs-12" style="background-color: #fff">
 
     <h1>New Bucket list form</h1>
     <h4>Bucket lists are a good way to keep track of life goals, make this a good one!</h4>
@@ -42,5 +44,7 @@
 
 
     </form>
+
+</div>
 
 {% endblock %}
