@@ -55,8 +55,17 @@ def sign_up():
     form = SignUpForm()
 
     if form.validate_on_submit():
-        flash('Login requested for un="%s", pw=%s' %
-              (form.username.data, str(form.password.data)))
+        users = session["users"]
+        users.append(vars(
+            User(
+                form.username.data,
+                form.password.data,
+                form.email.data
+            )
+        ))
+
+        flash({"message": "You have successfully signed up! Login to continue"})
+
         return redirect('/login')
 
     return render_template("auth/sign-up.html",
