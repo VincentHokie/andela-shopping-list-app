@@ -5,6 +5,16 @@ from . import app
 from .forms import LoginForm, SignUpForm, BucketListForm, BucketListItemForm
 
 
+
+# class definition to store a user object
+class User:
+    def __init__(self, username, password, email):
+        self.email = email
+        self.username = username
+        self.password = password
+        self.id = len(session["users"]) + 1
+
+
 # home page route definition
 @app.route("/")
 @app.route("/index")
