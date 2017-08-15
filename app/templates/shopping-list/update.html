@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Bucket List update</h1>
+<h4>Don't delete anything you'll regret forgetting!</h4>
+
+<form action="" method="post" name="update-bucketlist">
+    {{ form.hidden_tag() }}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+
+                {% for error in form.name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}<br>
+                {{ form.name(placeholder="Bucket List Name", class="form-input", required="required") }}
+
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+
+                {% for error in form.description.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}<br>
+                {{ form.description(placeholder="Description", required="required", class="form-input") }}
+
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <br>
+                <center>
+                    <button type="submit" name="Submit" class="btn btn-success">Create Bucket List</button>
+                </center>
+            </div>
+        </div>
+
+    </div>
+
+
+</form>
+
+{% endblock %}

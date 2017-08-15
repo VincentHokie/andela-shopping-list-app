@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Sign Up</h1>
+<form action="" method="post" name="sign-up">
+    {{ form.hidden_tag() }}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+
+                {% for error in form.username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}<br>
+                {{ form.username(placeholder="Enter Username", class="form-input", required="required", class="form-input") }}
+
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+
+                {% for error in form.password.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}<br>
+                {{ form.password(placeholder="Enter Password", class="form-input", required="required", class="form-input") }}
+
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+
+                {% for error in form.password2.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}<br>
+                {{ form.password2(placeholder="Re-Enter Password", class="form-input") }}
+
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <br>
+                <center>
+                    <button type="submit" name="Submit" class="btn btn-success">Sign Up </button>
+                </center>
+            </div>
+        </div>
+
+    </div>
+
+
+</form>
+
+{% endblock %}
