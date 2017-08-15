@@ -36,6 +36,8 @@ def logged_in_users_redirect():
 @app.route("/")
 @app.route("/index")
 def index():
+    create_application_session_keys()
+
     return render_template("index.html",
                            title='Home')
 
@@ -44,6 +46,9 @@ def index():
 # authentication route definitions
 @app.route("/sign-up", methods=['GET', 'POST'])
 def sign_up():
+
+    create_application_session_keys()
+
     form = SignUpForm()
 
     if form.validate_on_submit():
@@ -57,6 +62,9 @@ def sign_up():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+
+    create_application_session_keys()
+
     form = LoginForm()
 
     if form.validate_on_submit():
@@ -80,6 +88,7 @@ def login():
 def logout():
     return render_template("auth/logout.html",
                            title='Logout')
+    create_application_session_keys()
 
 
 
@@ -87,6 +96,9 @@ def logout():
 # bucket list crud routes
 @app.route("/create/shopping-list", methods=['GET', 'POST'])
 def create_bucket_list():
+
+    create_application_session_keys()
+
     form = BucketListForm()
 
     if form.validate_on_submit():
@@ -100,6 +112,9 @@ def create_bucket_list():
 
 @app.route("/update/shopping-list/<shopping_list_id>", methods=['GET', 'POST'])
 def update_bucket_list(shopping_list_id):
+
+    create_application_session_keys()
+
     form = BucketListForm()
 
     if form.validate_on_submit():
@@ -114,12 +129,18 @@ def update_bucket_list(shopping_list_id):
 
 @app.route("/view/shopping-lists", methods=['GET', 'POST'])
 def view_bucket_list():
+
+    create_application_session_keys()
+
     return render_template("shopping-list/view.html",
                            title='View Shopping Lists')
 
 
 @app.route("/delete/shopping-list/<shopping_list_id>", methods=['POST'])
 def delete_bucket_list(shopping_list_id):
+
+    create_application_session_keys()
+
     return "Hello Worldj"
 
 
@@ -129,6 +150,9 @@ def delete_bucket_list(shopping_list_id):
 # bucket list items crud routes
 @app.route("/create/<shopping_list>/item", methods=['GET', 'POST'])
 def create_bucket_list_item(shopping_list):
+
+    create_application_session_keys()
+
     form = BucketListItemForm()
 
     if form.validate_on_submit():
@@ -143,6 +167,9 @@ def create_bucket_list_item(shopping_list):
 
 @app.route("/update/<shopping_list>/item/<item_id>", methods=['GET', 'POST'])
 def update_bucket_list_item(shopping_list, item_id):
+
+    create_application_session_keys()
+
     form = BucketListItemForm()
 
     if form.validate_on_submit():
@@ -157,10 +184,16 @@ def update_bucket_list_item(shopping_list, item_id):
 
 @app.route("/view/<shopping_list>/items", methods=['GET', 'POST'])
 def view_bucket_list_item(bucket_list):
+
+    create_application_session_keys()
+
     return render_template("shopping-list-item/view.html",
                            title='View Shopping List Items')
 
 
 @app.route("/delete/shopping-list-item/<item_id>", methods=['POST'])
 def delete_bucket_list_item(item_id):
+
+    create_application_session_keys()
+
     return "Hello Worldj"
