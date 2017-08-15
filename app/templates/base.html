@@ -10,10 +10,10 @@
     <meta name="author" content="">
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!--external css-->
-    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/font-awesome.css') }}" rel="stylesheet" />
 
     {% if title %}
         <title> {{ title }} - Bucket List </title>
