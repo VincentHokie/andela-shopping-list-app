@@ -84,15 +84,18 @@ def login():
 
     if form.validate_on_submit():
 
-        flash(
-            {
-                "message": 'Login requested for un="%s", pw=%s' %
-                           (form.username.data, str(form.password.data)),
-                "class_name": "success"
-            }
-        )
+        users = session["users"]
+        for user in users:
+            if user["username"] == form.username.data.strip() and user["password"] == form.password.data.strip():
+                session["logged_in"] = form.username.data.strip().title()
+                return redirect('/view/shopping-lists')
 
-        return redirect('/view/shopping-lists')
+        flash({
+            "message":
+            'Login failed! Either your username or password are incorrect'
+        })
+
+        return redirect('/login')
 
     return render_template("auth/login.html",
                            title='Login',
