@@ -2,12 +2,11 @@
 
 {% block content %}
 
-
-<h1>Login</h1>
+<link href="{{ url_for('static', filename='css/login-styling.css') }}" rel="stylesheet" />
 
 <div class="container">
 
-    <form class="form-signin " action="view-shopping-list.html" method="post">
+    <form class="form-signin " action="/login" method="post">
 
         {{ form.hidden_tag() }}
 
@@ -17,20 +16,20 @@
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}<br>
-            <input type="text" class="form-control" placeholder="Username" name="username" required autofocus />
-            {{ form.username(placeholder="Username", class="form-input", required="required") }}
+
+            {{ form.username(placeholder="Username", class="form-control", required="required", autofocus="autofocus") }}
 
             {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}<br>
-            <input type="password" class="form-control" placeholder="Password" name="password" required />
-            {{ form.password(placeholder="Enter Password", class="form-input", required="required") }}
+
+            {{ form.password(placeholder="Enter Password", class="form-control", required="required") }}
 
             <button class="btn btn-md btn-login btn-block" type="submit">Sign in</button>
 
         </div>
 
-        <p class="col-xs-6 col-xs-offset-3">or <a href="sign-up.html">Sign Up</a> if you dont have an account already</p>
+        <p class="col-xs-6 col-xs-offset-3">or <a href="/sign-up">Sign Up</a> if you dont have an account already</p>
 
     </form>
 
