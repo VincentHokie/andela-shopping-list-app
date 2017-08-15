@@ -22,7 +22,7 @@ def sign_up():
     if form.validate_on_submit():
         flash('Login requested for un="%s", pw=%s' %
               (form.username.data, str(form.password.data)))
-        return redirect('/index')
+        return redirect('/login')
 
     return render_template("auth/sign-up.html",
                            title='Create Profile',
@@ -42,7 +42,7 @@ def login():
             }
         )
 
-        return redirect('/index')
+        return redirect('/view/shopping-lists')
 
     return render_template("auth/login.html",
                            title='Login',
