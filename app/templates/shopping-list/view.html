@@ -1,10 +1,79 @@
 {% extends "base_logged_in.html" %}
 
 {% block content %}
-    <h1>Hi, {{ user.nickname }}!</h1>
-    {% for post in posts %}
-    <div><p>{{ post.author.nickname }} says: <b>{{ post.body }}</b></p></div>
-    {% endfor %}
+
+<style type="text/css">
+    .alert-default{ border: 1px solid #000 }
+    .alert-default:hover{ background-color: #dff0d8; border: none}
+</style>
+
 <div class="col-xs-12" style="background-color: #fff">
+
+    <div class="col-xs-12">
+
+        <div class="col-sm-6 col-xs-12">
+
+            <h4 class="col-xs-12" style="margin-bottom:20px">Shopping lists</h4>
+
+            <div class="alert alert-default" style="clear:both">
+                <strong>List Name</strong> - 2nd August '16
+            </div>
+
+            <div class="alert alert-default">
+                <strong>List Name 1</strong> - 2nd August '16
+            </div>
+
+            <div class="alert alert-info">
+                <strong>List Name 2</strong> - 2nd August '16
+            </div>
+
+            <div class="alert alert-default">
+                <strong>List Name 3</strong> - 2nd August '16
+            </div>
+
+            <div class="alert alert-default">
+                <strong>List Name 4</strong> - 2nd August '16
+            </div>
+
+            <div class="alert alert-default">
+                <strong>List Name 5</strong> - 2nd August '16
+            </div>
+
+            <div class="alert alert-default">
+                <strong>List Name 6</strong> - 2nd August '16
+            </div>
+
+        </div>
+
+        <div class="col-sm-6 hidden-xs">
+
+            <h4 class="col-xs-12" style="margin-bottom:20px">Shopping list - Item Name 2</h4>
+            <h4 class="col-xs-12" style="margin-bottom:20px">Items</h4>
+
+            <ul class="list-group col-xs-12">
+                <li class="list-group-item">
+                    <label><input type="checkbox" checked> Milk</label>
+                </li>
+                <li class="list-group-item">
+                    <label><input type="checkbox"> Diapers</label>
+                </li>
+                <li class="list-group-item">
+                    <label><input type="checkbox" checked> Bread</label>
+                </li>
+                <li class="list-group-item">
+                    <label><input type="checkbox" checked> Yoghurt</label>
+                </li>
+                <li class="list-group-item">
+                    <label><input type="checkbox" checked> 10 A4 books</label>
+                </li>
+                <li class="list-group-item">
+                    <label><input type="checkbox"> Wipes</label>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
 </div>
 {% endblock %}

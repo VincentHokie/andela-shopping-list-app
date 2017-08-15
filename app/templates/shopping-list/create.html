@@ -15,8 +15,8 @@
                 <div class="form-group">
 
                     {% for error in form.name.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}<br>
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}<br>
                     {{ form.name(placeholder="Bucket List Name", class="form-input", required="required", class="form-input") }}
 
                 </div>
@@ -25,8 +25,8 @@
                 <div class="form-group">
 
                     {% for error in form.description.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}<br>
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}<br>
                     {{ form.description(placeholder="Description", required="required", class="form-input") }}
 
                 </div>
