@@ -29,8 +29,9 @@ def logged_in_users_redirect():
             "message":
             "You're already logged in!"
         })
-        return redirect('/view/shopping-lists')
-
+        return True
+    else:
+        return False
 
 # home page route definition
 @app.route("/")
@@ -48,7 +49,8 @@ def index():
 def sign_up():
 
     # if the user is signed in, redirect and notify them
-    logged_in_users_redirect()
+    if logged_in_users_redirect():
+        return redirect('/view/shopping-lists')
 
     create_application_session_keys()
 
@@ -76,7 +78,8 @@ def sign_up():
 def login():
 
     # if the user is signed in, redirect and notify them
-    logged_in_users_redirect()
+    if logged_in_users_redirect():
+        return redirect('/view/shopping-lists')
 
     create_application_session_keys()
 
