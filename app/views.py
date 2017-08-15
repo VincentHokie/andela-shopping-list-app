@@ -47,6 +47,9 @@ def index():
 @app.route("/sign-up", methods=['GET', 'POST'])
 def sign_up():
 
+    # if the user is signed in, redirect and notify them
+    logged_in_users_redirect()
+
     create_application_session_keys()
 
     form = SignUpForm()
@@ -62,6 +65,9 @@ def sign_up():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+
+    # if the user is signed in, redirect and notify them
+    logged_in_users_redirect()
 
     create_application_session_keys()
 
