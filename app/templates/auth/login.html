@@ -4,45 +4,37 @@
 
 
 <h1>Login</h1>
-<form action="" method="post" name="login">
-    {{ form.hidden_tag() }}
 
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="form-group">
+<div class="container">
 
-                {% for error in form.username.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}<br>
-                {{ form.username(placeholder="Username", class="form-input", required="required") }}
+    <form class="form-signin " action="view-shopping-list.html" method="post">
 
-            </div>
-        </div>
-        <div class="col-xs-12">
-            <div class="form-group">
+        {{ form.hidden_tag() }}
 
-                {% for error in form.password.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}<br>
-                {{ form.password(placeholder="Enter Password", class="form-input", required="required") }}
+        <h2 class="form-signin-heading">Andela Shopping List</h2>
+        <div class="login-wrap">
 
-            </div>
-        </div>
-        <div class="col-xs-6">
-            <div class="form-group">
-                <br>
-                <center>
-                    <button type="submit" name="Submit" class="btn btn-success">Log In </button>
-                </center>
-            </div>
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}<br>
+            <input type="text" class="form-control" placeholder="Username" name="username" required autofocus />
+            {{ form.username(placeholder="Username", class="form-input", required="required") }}
+
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}<br>
+            <input type="password" class="form-control" placeholder="Password" name="password" required />
+            {{ form.password(placeholder="Enter Password", class="form-input", required="required") }}
+
+            <button class="btn btn-md btn-login btn-block" type="submit">Sign in</button>
+
         </div>
 
-        <p class="col-xs-12">{{ form.remember_me }} Remember Me</p>
+        <p class="col-xs-6 col-xs-offset-3">or <a href="sign-up.html">Sign Up</a> if you dont have an account already</p>
 
-    </div>
+    </form>
 
-
-</form>
+</div>
 
 
 {% endblock %}
