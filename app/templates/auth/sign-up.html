@@ -2,53 +2,71 @@
 
 {% block content %}
 
-<h1>Sign Up</h1>
-<form action="" method="post" name="sign-up">
-    {{ form.hidden_tag() }}
+    <div class="col-xs-12">
 
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="form-group">
+        <h1>Sign Up</h1>
 
-                {% for error in form.username.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}<br>
-                {{ form.username(placeholder="Enter Username", class="form-input", required="required", class="form-input") }}
+        <div class="row">
 
-            </div>
-        </div>
-        <div class="col-xs-12">
-            <div class="form-group">
+          <img src="images/shopping-list.jpg" class="col-sm-6 hidden-xs" />
 
-                {% for error in form.password.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}<br>
-                {{ form.password(placeholder="Enter Password", class="form-input", required="required", class="form-input") }}
+          <div class="col-sm-6 col-xs-12" style="margin-top:30px">
+              <h4 class="col-xs-12">Fill this in real quick and begin using our awesome features</h4>
 
-            </div>
-        </div>
-        <div class="col-xs-12">
-            <div class="form-group">
+              <form role="form" class="col-xs-12" style="margin-top:20px" method="post" action="login.html" name="sign-up">
 
-                {% for error in form.password2.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}<br>
-                {{ form.password2(placeholder="Re-Enter Password", class="form-input") }}
+                  {{ form.hidden_tag() }}
 
-            </div>
-        </div>
-        <div class="col-xs-6">
-            <div class="form-group">
-                <br>
-                <center>
-                    <button type="submit" name="Submit" class="btn btn-success">Sign Up </button>
-                </center>
-            </div>
-        </div>
+                  <div class="form-group">
 
-    </div>
+                      <label for="username">Username</label>
+
+                      {% for error in form.username.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}<br>
+                      {{ form.username(placeholder="vince-the-realest", class="form-control", required="required", id="username") }}
+
+                  </div>
+                  <div class="form-group">
+                      <label for="email">Email address</label>
+                      <input type="email" class="form-control" id="email" name="email" placeholder="vince@hotmail.com" required>
+                  </div>
+                  <div class="form-group">
+
+                      <label for="password">Password</label>
+
+                      {% for error in form.password.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}<br>
+                        {{ form.password(placeholder="Enter Password", class="form-control", required="required", id="password") }}
 
 
-</form>
+                  </div>
+                  <div class="form-group">
+
+                      <label for="password2">Password</label>
+
+                       {% for error in form.password2.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}<br>
+                            {{ form.password2(placeholder="Re-Enter Password", class="form-control") }}
+
+                      {{ form.password2(placeholder="Re-Enter Password", class="form-control", required="required", id="password2") }}
+
+                  </div>
+
+                  <div class="checkbox">
+                      <label>
+                          <input type="checkbox"> I have read and agreed to the Andela Shopping list terms and conditions
+                      </label>
+                  </div>
+                  <button type="submit" class="btn btn-info">Sign Up</button>
+              </form>
+
+          </div>
+      </div>
+
+  </div>
+
 
 {% endblock %}
