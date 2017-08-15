@@ -6,6 +6,19 @@
 
 <div class="container">
 
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+
+    {% for message in messages %}
+    <div class="alert alert-info">
+        <strong><i class="fa fa-info-circle"></i></strong> {{ message.message }}
+    </div>
+
+    {% endfor %}
+
+    {% endif %}
+    {% endwith %}
+
     <form class="form-signin " action="/login" method="post">
 
         {{ form.hidden_tag() }}
