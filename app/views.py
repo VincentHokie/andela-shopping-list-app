@@ -21,6 +21,17 @@ def create_application_session_keys():
     if "users" not in session:
         session["users"] = []
 
+
+# method definition to keep logged in users from login and sign up pages
+def logged_in_users_redirect():
+    if "logged_in" in session and session["logged_in"] is not None:
+        flash({
+            "message":
+            "You're already logged in!"
+        })
+        return redirect('/view/shopping-lists')
+
+
 # home page route definition
 @app.route("/")
 @app.route("/index")
