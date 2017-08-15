@@ -2,6 +2,19 @@
 
 {% block content %}
 
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+{% for message in messages %}
+<div class="alert alert-info">
+    <strong><i class="fa fa-info-circle"></i></strong> {{ message.message }}
+</div>
+
+{% endfor %}
+
+{% endif %}
+{% endwith %}
+
 <style type="text/css">
     .alert-default{ border: 1px solid #000 }
     .alert-default:hover{ background-color: #dff0d8; border: none}
@@ -76,4 +89,5 @@
     </div>
 
 </div>
+
 {% endblock %}
