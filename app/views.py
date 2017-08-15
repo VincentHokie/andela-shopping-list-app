@@ -1,6 +1,6 @@
 __author__ = 'MacUser'
 
-from flask import render_template, redirect, flash
+from flask import render_template, redirect, flash, session
 from . import app
 from .forms import LoginForm, SignUpForm, BucketListForm, BucketListItemForm
 
