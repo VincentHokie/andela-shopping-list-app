@@ -15,6 +15,12 @@ class User:
         self.id = len(session["users"]) + 1
 
 
+
+# method definition to create the applications session
+def create_application_session_keys():
+    if "users" not in session:
+        session["users"] = []
+
 # home page route definition
 @app.route("/")
 @app.route("/index")
