@@ -21,6 +21,8 @@ class ShoppingListForm(Form):
     name = StringField('name', validators=[DataRequired()])
     description = TextAreaField('description', validators=[DataRequired()])
 
+class DeleteShoppingListForm(Form):
+    id = StringField('id', validators=[DataRequired()])
 
 class ShoppingListItemForm(Form):
     name = StringField('username', validators=[DataRequired()])
