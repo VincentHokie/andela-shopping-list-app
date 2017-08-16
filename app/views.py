@@ -32,7 +32,13 @@ class User:
 # method definition to create the applications session
 def create_application_session_keys():
     if "users" not in session:
-        session["users"] = []
+        session["users"] = {}
+
+    if "shopping-lists" not in session:
+        session["shopping-lists"] = {}
+
+    if "logged_in" not in session:
+        session["logged_in"] = []
 
 
 # method definition to keep logged in users from login and sign up pages
