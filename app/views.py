@@ -5,7 +5,7 @@ from flask import render_template, redirect, flash, session
 from datetime import datetime
 
 from . import app
-from .forms import LoginForm, SignUpForm, BucketListForm, BucketListItemForm
+from .forms import LoginForm, SignUpForm, ShoppingListForm, ShoppingListItemForm, DeleteShoppingListForm
 
 
 
@@ -207,18 +207,22 @@ def view_bucket_list():
 
     create_application_session_keys()
 
+    form = DeleteShoppingListForm()
 
     # if the user is not signed in, redirect and notify them
     if guest_users_redirect():
         return redirect('/login')
 
     return render_template("shopping-list/view.html",
-                           title='View Shopping Lists')
+                           title='View Shopping Lists',
+                           items=session["shopping-lists"],
+                           form=form)
 
 
 @app.route("/delete/shopping-list/<shopping_list_id>", methods=['POST'])
 def delete_bucket_list(shopping_list_id):
 
+    form = DeleteShoppingListForm()
     create_application_session_keys()
 
     # if the user is not signed in, redirect and notify them
