@@ -196,13 +196,18 @@ def update_shopping_list(shopping_list_id):
     form = ShoppingListForm()
 
     if form.validate_on_submit():
-        flash('Login requested for un="%s", pw=%s' %
-              (form.username.data, str(form.password.data)))
-        return redirect('/index')
+        session["shopping-lists"][shopping_list_id]["name"] = form.name.data
+        flash({"message":'Update Successful!'})
+        return redirect('/view/shopping-lists')
+
+    shopping_list = session["shopping-lists"][shopping_list_id]
+    form = ShoppingListForm()
 
     return render_template("shopping-list/update.html",
                            title='Update Shopping List',
-                           form=form)
+                           form=form,
+                           name=shopping_list["name"],
+                           shopping_list_id=shopping_list_id)
 
 
 @app.route("/view/shopping-lists", methods=['GET', 'POST'])
