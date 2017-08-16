@@ -1,5 +1,6 @@
 __author__ = 'MacUser'
 
+import os
 from flask import render_template, redirect, flash, session
 from . import app
 from .forms import LoginForm, SignUpForm, BucketListForm, BucketListItemForm
@@ -14,6 +15,18 @@ class User:
         self.password = password
         self.id = len(session["users"]) + 1
 
+        created_id = os.urandom(10).hex()
+        while created_id in session["users"]:
+            created_id = os.urandom(10).hex()
+
+        self.id = created_id
+
+
+        created_id = os.urandom(10).hex()
+        while created_id in session["shopping-lists"]:
+            created_id = os.urandom(10).hex()
+
+        self.id = created_id
 
 
 # method definition to create the applications session
