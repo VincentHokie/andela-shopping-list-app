@@ -160,9 +160,9 @@ def logout():
 
 
 
-# bucket list crud routes
+# shopping list crud routes
 @app.route("/create/shopping-list", methods=['GET', 'POST'])
-def create_bucket_list():
+def create_shopping_list():
 
     create_application_session_keys()
 
@@ -182,7 +182,7 @@ def create_bucket_list():
                            form=form)
 
 @app.route("/update/shopping-list/<shopping_list_id>", methods=['GET', 'POST'])
-def update_bucket_list(shopping_list_id):
+def update_shopping_list(shopping_list_id):
 
     create_application_session_keys()
 
@@ -203,7 +203,7 @@ def update_bucket_list(shopping_list_id):
 
 
 @app.route("/view/shopping-lists", methods=['GET', 'POST'])
-def view_bucket_list():
+def view_shopping_list():
 
     create_application_session_keys()
 
@@ -219,8 +219,8 @@ def view_bucket_list():
                            form=form)
 
 
-@app.route("/delete/shopping-list/<shopping_list_id>", methods=['POST'])
-def delete_bucket_list(shopping_list_id):
+@app.route("/delete/shopping-list", methods=['POST'])
+def delete_shopping_list():
 
     form = DeleteShoppingListForm()
     create_application_session_keys()
@@ -235,9 +235,9 @@ def delete_bucket_list(shopping_list_id):
 
 
 
-# bucket list items crud routes
+# shopping list items crud routes
 @app.route("/create/<shopping_list>/item", methods=['GET', 'POST'])
-def create_bucket_list_item(shopping_list):
+def create_shopping_list_item(shopping_list):
 
     create_application_session_keys()
 
@@ -259,7 +259,7 @@ def create_bucket_list_item(shopping_list):
 
 
 @app.route("/update/<shopping_list>/item/<item_id>", methods=['GET', 'POST'])
-def update_bucket_list_item(shopping_list, item_id):
+def update_shopping_list_item(shopping_list, item_id):
 
     create_application_session_keys()
 
@@ -276,7 +276,7 @@ def update_bucket_list_item(shopping_list, item_id):
 
 
 @app.route("/view/<shopping_list>/items", methods=['GET', 'POST'])
-def view_bucket_list_item(bucket_list):
+def view_shopping_list_item(shopping_list):
 
     create_application_session_keys()
 
@@ -285,7 +285,7 @@ def view_bucket_list_item(bucket_list):
 
 
 @app.route("/delete/shopping-list-item/<item_id>", methods=['POST'])
-def delete_bucket_list_item(item_id):
+def delete_shopping_list_item(item_id):
 
     create_application_session_keys()
 
