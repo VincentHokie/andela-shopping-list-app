@@ -46,7 +46,7 @@ def create_application_session_keys():
         session["shopping-lists"] = {}
 
     if "logged_in" not in session:
-        session["logged_in"] = []
+        session["logged_in"] = None
 
 
 # method definition to keep logged in users from login and sign up pages
