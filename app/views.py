@@ -2,6 +2,8 @@ __author__ = 'MacUser'
 
 import os
 from flask import render_template, redirect, flash, session
+from datetime import datetime
+
 from . import app
 from .forms import LoginForm, SignUpForm, BucketListForm, BucketListItemForm
 
@@ -21,6 +23,13 @@ class User:
 
         self.id = created_id
 
+
+# class definition to store a user object
+class ShoppingList:
+    def __init__(self, name):
+        self.name = str(name).title()
+        self.time = datetime.now().strftime("%Y-%b-%d %H:%M")
+        self.user_id = session["logged_in"]["id"]
 
         created_id = os.urandom(10).hex()
         while created_id in session["shopping-lists"]:
