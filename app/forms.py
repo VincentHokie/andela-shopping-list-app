@@ -17,11 +17,11 @@ class SignUpForm(Form):
     password2 = PasswordField('password2', validators=[DataRequired()])
 
 
-class BucketListForm(Form):
+class ShoppingListForm(Form):
     name = StringField('name', validators=[DataRequired()])
     description = TextAreaField('description', validators=[DataRequired()])
 
 
-class BucketListItemForm(Form):
+class ShoppingListItemForm(Form):
     name = StringField('username', validators=[DataRequired()])
     date = DateField('password', validators=[DataRequired()])
