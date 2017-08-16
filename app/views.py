@@ -8,33 +8,31 @@ from . import app
 from .forms import LoginForm, SignUpForm, ShoppingListForm, ShoppingListItemForm, DeleteShoppingListForm
 
 
+class Abstract:
 
-# class definition to store a user object
-class User:
-    def __init__(self, username, password, email):
-        self.email = email
-        self.username = username
-        self.password = password
-
-        created_id = os.urandom(10).hex()
-        while created_id in session["users"]:
-            created_id = os.urandom(10).hex()
-
-        self.id = created_id
-
-
-# class definition to store a user object
-class ShoppingList:
-    def __init__(self, name):
-        self.name = str(name).title()
-        self.time = datetime.now().strftime("%Y-%b-%d %H:%M")
-        self.user_id = session["logged_in"]["id"]
-
+    def get_time(self):
         created_id = os.urandom(10).hex()
         while created_id in session["shopping-lists"]:
             created_id = os.urandom(10).hex()
 
-        self.id = created_id
+        return created_id
+
+# class definition to store a user object
+class User(Abstract):
+    def __init__(self, username, password, email):
+        self.email = email
+        self.username = username
+        self.password = password
+        self.id = self.get_time()
+
+
+# class definition to store a user object
+class ShoppingList(Abstract):
+    def __init__(self, name):
+        self.name = str(name).title()
+        self.time = datetime.now().strftime("%Y-%b-%d %H:%M")
+        self.user_id = session["logged_in"]["id"]
+        self.id = self.get_time()
 
 
 # method definition to create the applications session
