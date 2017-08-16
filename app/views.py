@@ -229,7 +229,12 @@ def delete_shopping_list():
         return redirect('/login')
 
 
+    if form.validate_on_submit():
+        del session["shopping-lists"][form.id.data]
+        flash({"message": 'Delete for item is successful!'})
+        return redirect('/view/shopping-lists')
 
+    return redirect('/view/shopping-lists')
 
 
 
