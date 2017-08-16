@@ -166,7 +166,11 @@ def create_bucket_list():
 
     create_application_session_keys()
 
-    form = BucketListForm()
+    # if the user is not signed in, redirect and notify them
+    if guest_users_redirect():
+        return redirect('/login')
+
+    form = ShoppingListForm()
 
     if form.validate_on_submit():
         flash('Login requested for un="%s", pw=%s' %
@@ -182,7 +186,11 @@ def update_bucket_list(shopping_list_id):
 
     create_application_session_keys()
 
-    form = BucketListForm()
+    # if the user is not signed in, redirect and notify them
+    if guest_users_redirect():
+        return redirect('/login')
+
+    form = ShoppingListForm()
 
     if form.validate_on_submit():
         flash('Login requested for un="%s", pw=%s' %
@@ -199,6 +207,11 @@ def view_bucket_list():
 
     create_application_session_keys()
 
+
+    # if the user is not signed in, redirect and notify them
+    if guest_users_redirect():
+        return redirect('/login')
+
     return render_template("shopping-list/view.html",
                            title='View Shopping Lists')
 
@@ -208,7 +221,11 @@ def delete_bucket_list(shopping_list_id):
 
     create_application_session_keys()
 
-    return "Hello Worldj"
+    # if the user is not signed in, redirect and notify them
+    if guest_users_redirect():
+        return redirect('/login')
+
+
 
 
 
@@ -221,6 +238,11 @@ def create_bucket_list_item(shopping_list):
     create_application_session_keys()
 
     form = BucketListItemForm()
+    # if the user is not signed in, redirect and notify them
+    if guest_users_redirect():
+        return redirect('/login')
+
+    form = shoppingListItemForm()
 
     if form.validate_on_submit():
         flash('Login requested for un="%s", pw=%s' %
