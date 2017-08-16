@@ -7,7 +7,7 @@
     <h1>Edit Shopping list form</h1>
     <h4>Shopping lists are a good way to keep track of expenditures!</h4>
 
-    <form action="" method="post" name="update-bucketlist">
+    <form action="/update/shopping-list/{{ shopping_list_id }}" method="post" name="create-bucketlist">
         {{ form.hidden_tag() }}
 
         <div class="row">
@@ -17,7 +17,7 @@
                     {% for error in form.name.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}<br>
-                    {{ form.name(placeholder="Bucket List Name", class="form-input", required="required") }}
+                    <input placeholder="Shopping list" class="form-control" required value="{{ name }}" name="name"/>
 
                 </div>
             </div>
@@ -37,4 +37,5 @@
     </form>
 
 </div>
+
 {% endblock %}
