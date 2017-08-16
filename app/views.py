@@ -172,9 +172,13 @@ def create_shopping_list():
     form = ShoppingListForm()
 
     if form.validate_on_submit():
-        flash('Login requested for un="%s", pw=%s' %
-              (form.username.data, str(form.password.data)))
-        return redirect('/index')
+
+        new_shopping_list = ShoppingList(form.name.data)
+        session["shopping-lists"][new_shopping_list.id] = vars(new_shopping_list)
+
+        flash({"message": "You have successfully created a shopping list! Select it to start adding items to it"})
+
+        return redirect('/view/shopping-lists')
 
     return render_template("shopping-list/create.html",
                            title='Create Shopping List',
