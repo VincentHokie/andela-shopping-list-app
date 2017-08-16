@@ -61,6 +61,18 @@ def logged_in_users_redirect():
     else:
         return False
 
+
+# method definition to keep logged in users from login and sign up pages
+def guest_users_redirect():
+    if "logged_in" in session and session["logged_in"] is None:
+        flash({
+            "message":
+            "You need to be logged in! Please do that first"
+        })
+        return True
+    else:
+        return False
+
 # home page route definition
 @app.route("/")
 @app.route("/index")
