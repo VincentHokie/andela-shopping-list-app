@@ -97,14 +97,12 @@ def sign_up():
     form = SignUpForm()
 
     if form.validate_on_submit():
-        users = session["users"]
-        users.append(vars(
-            User(
+        new_user = User(
                 form.username.data,
                 form.password.data,
                 form.email.data
             )
-        ))
+        session["users"][new_user.id] = vars(new_user)
 
         flash({"message": "You have successfully signed up! Login to continue"})
 
@@ -128,7 +126,8 @@ def login():
     if form.validate_on_submit():
 
         users = session["users"]
-        for user in users:
+        for key in users:
+            user = users[key]
             if user["username"] == form.username.data.strip() and user["password"] == form.password.data.strip():
                 session["logged_in"] = {"username": form.username.data.strip().title(), "id": user["id"]}
                 return redirect('/view/shopping-lists')
