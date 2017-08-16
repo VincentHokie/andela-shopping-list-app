@@ -15,7 +15,6 @@ class User:
         self.email = email
         self.username = username
         self.password = password
-        self.id = len(session["users"]) + 1
 
         created_id = os.urandom(10).hex()
         while created_id in session["users"]:
