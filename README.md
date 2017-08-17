@@ -20,14 +20,14 @@ Simply follow the following steps..
 7. To run the application run ```python run.py ``` , it should be accessible from a browser at the url *http://127.0.0.1:5000/*
 
 ### TravisCI
-[![Build Status](https://travis-ci.org/boennemann/badges.svg?branch=master)](https://travis-ci.org/boennemann/badges)
+[![Build Status](https://travis-ci.org/VincentHokie/badges.svg?branch=master)](https://travis-ci.org/VincentHokie/badges)
 
 
 ### Coveralls
-[![Coverage Status](https://coveralls.io/repos/boennemann/badges/badge.svg)](https://coveralls.io/r/boennemann/badges)
+[![Coverage Status](https://coveralls.io/repos/boennemann/badges/badge.svg)](https://coveralls.io/r/VincentHokie/badges)
 
 
 ### Code Climate
-[![Code Climate](https://codeclimate.com/github/boennemann/badges.svg)](https://codeclimate.com/github/boennemann/badges)
+[![Code Climate](https://codeclimate.com/github/VincentHokie/badges.svg)](https://codeclimate.com/github/VincentHokie/badges)
 
 ## Enjoy
