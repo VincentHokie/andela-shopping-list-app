@@ -5,7 +5,7 @@ from flask import render_template, redirect, flash, session
 from datetime import datetime
 
 from . import app
-from .forms import LoginForm, SignUpForm, ShoppingListForm, ShoppingListItemForm, DeleteShoppingListForm
+from .forms import LoginForm, SignUpForm, ShoppingListForm, ShoppingListItemForm, DeleteShoppingListForm, DeleteShoppingListItemForm
 
 
 class Abstract:
@@ -321,10 +321,14 @@ def update_shopping_list_item(item_id):
                            shopping_list_id=item_id)
 
 
-@app.route("/view/<shopping_list>/items", methods=['GET', 'POST'])
+@app.route("/view/shopping_list/items", methods=['GET', 'POST'])
 def view_shopping_list_item(shopping_list):
 
     create_application_session_keys()
+
+    # if the user is not signed in, redirect and notify them
+    if guest_users_redirect():
+        return redirect('/login')
 
     return render_template("shopping-list-item/view.html",
                            title='View Shopping List Items')
