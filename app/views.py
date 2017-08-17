@@ -330,9 +330,19 @@ def view_shopping_list_item(shopping_list):
                            title='View Shopping List Items')
 
 
-@app.route("/delete/shopping-list-item/<item_id>", methods=['POST'])
-def delete_shopping_list_item(item_id):
+@app.route("/delete/shopping-list-item", methods=['POST'])
+def delete_shopping_list_item():
 
+    form = DeleteShoppingListItemForm()
     create_application_session_keys()
 
-    return "Hello Worldj"
+    # if the user is not signed in, redirect and notify them
+    if guest_users_redirect():
+        return redirect('/login')
+
+    if form.validate_on_submit():
+        del session["shopping-list-items"][form.id.data]
+        flash({"message": 'Delete of a shopping list item is successful!'})
+        return redirect('/view/shopping-lists')
+
+    return redirect('/view/shopping-lists')
