@@ -61,28 +61,71 @@
 
         <div class="col-sm-6 hidden-xs">
 
+
             <h4 class="col-xs-12" style="margin-bottom:20px">Shopping list - Item Name 2</h4>
             <h4 class="col-xs-12" style="margin-bottom:20px">Items</h4>
 
+            <div class="well well-sm col-xs-12">
+                <h5>Enter shopping list item to add below!</h5>
+                <form action="/create/shopping-list/item" method="post" name="create-bucketlist">
+                    {{ form_item.hidden_tag() }}
+
+                    <input type="hidden" value="" name="shopping_list" />
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+
+                                {% for error in form_item.name.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}<br>
+                                {{ form_item.name(placeholder="Shopping List item", class="form-control", required="required") }}
+
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <br>
+                                <center>
+                                    <button type="submit" name="Submit" class="btn btn-success create-item" disabled>Create item</button>
+                                </center>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </form>
+            </div>
+
             <ul class="list-group col-xs-12">
-                <li class="list-group-item">
-                    <label><input type="checkbox" checked> Milk</label>
+
+                {% if items_of_list %}
+
+                {% for item in items_of_list %}
+                <li class="list-group-item col-xs-12 shopping-list-items {{ items_of_list[item]['shopping_list'] }}" id="{{ items_of_list[item]['id'] }}">
+
+                    <label class="col-xs-10"><input type="checkbox" class=""col-xs-12"
+                    {% if items_of_list[item]["checked"] %} checked {% endif %}> {{ items_of_list[item]['name'] }} </label>
+
+                    <a href="/update/shopping-list/item/{{ items_of_list[item]['id'] }}" class="col-xs-1" style="padding:0">
+                        <i class="fa fa-edit btn btn-primary"></i>
+                    </a>
+                    <form role="form" method="post" action="/delete/shopping-list-item" class="col-xs-1" style="padding:0">
+                        {{ form_delete.hidden_tag() }}
+                        <input type="hidden" value="{{ items_of_list[item]['id'] }}" name="id" />
+                        <button class="btn btn-danger col-xs-12" type="submit">
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                    </form>
+
                 </li>
-                <li class="list-group-item">
-                    <label><input type="checkbox"> Diapers</label>
-                </li>
-                <li class="list-group-item">
-                    <label><input type="checkbox" checked> Bread</label>
-                </li>
-                <li class="list-group-item">
-                    <label><input type="checkbox" checked> Yoghurt</label>
-                </li>
-                <li class="list-group-item">
-                    <label><input type="checkbox" checked> 10 A4 books</label>
-                </li>
-                <li class="list-group-item">
-                    <label><input type="checkbox"> Wipes</label>
-                </li>
+
+                {% endfor %}
+
+                {% endif %}
+
             </ul>
 
         </div>
