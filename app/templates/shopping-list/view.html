@@ -20,6 +20,7 @@
     .alert-default{ border: 1px solid #000; clear:left }
     .alert-default:hover{ background-color: #dff0d8; border: none}
     .shopping-list i { font-size: 24px; cursor:pointer }
+    .shopping-list-items { display:none; list-style-type: none }
 
 </style>
 
@@ -30,18 +31,20 @@
         <div class="col-sm-6 col-xs-12">
 
             <h4 class="col-xs-12" style="margin-bottom:20px">Shopping lists</h4>
+            <h5>Click a shopping list to see its items</h5>
+
             <a href="/create/shopping-list" class="btn btn-success col-xs-6" style="margin-bottom:20px"><i class="fa fa fa-plus-circle"></i>Add New Shopping List</a>
 
             {% if items %}
 
             {% for item in items %}
-            <div class="col-xs-12 shopping-list">
+            <div class="col-xs-12 shopping-list" id="{{ items[item]['id'] }}">
 
                 <div class="alert alert-default col-xs-10">
                     <strong>{{ items[item]['name'] }}</strong> -  {{ items[item]['time'] }}
                 </div>
-                <a href="/update/shopping-list/{{ items[item]['id'] }}">
-                    <i class="col-xs-1 fa fa-edit btn btn-primary"></i>
+                <a href="/update/shopping-list/{{ items[item]['id'] }}" class="col-xs-1" style="padding:0">
+                    <i class="fa fa-edit btn btn-primary"></i>
                 </a>
                 <form role="form" method="post" action="/delete/shopping-list">
                     {{ form.hidden_tag() }}
