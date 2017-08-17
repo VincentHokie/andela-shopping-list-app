@@ -44,12 +44,22 @@ class SignUpTests(unittest.TestCase):
                 name="Babythings"), follow_redirects=True)
 
             lists = session["shopping-lists"]
+
+            shopping_list = False
+            for key in lists:
+                shopping_list = lists[key]
+                break
+
+            rv4 = client.post('/update/shopping-list/'+shopping_list["id"], data=dict(
+                name="Babythings1"), follow_redirects=True)
+
+            lists = session["shopping-lists"]
             exists = False
 
             for key in lists:
                 shopping_list = lists[key]
-                if shopping_list["name"] == "Babythings" and\
-                    datetime.now() > datetime.strptime(shopping_list["time"], 
+                if shopping_list["name"] == "Babythings1" and\
+                    datetime.now() > datetime.strptime(shopping_list["time"],
                    "%Y-%b-%d %H:%M"):
                     exists = True
                     break
