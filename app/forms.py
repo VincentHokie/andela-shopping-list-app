@@ -23,6 +23,9 @@ class ShoppingListForm(FlaskForm):
 class DeleteShoppingListForm(FlaskForm):
     id = StringField('id', validators=[DataRequired()])
 
+class DeleteShoppingListItemForm(FlaskForm):
+    id = StringField('id', validators=[DataRequired()])
+
 class ShoppingListItemForm(FlaskForm):
     name = StringField('username', validators=[DataRequired()])
     date = DateField('password', validators=[DataRequired()])
