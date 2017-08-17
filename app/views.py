@@ -228,6 +228,8 @@ def view_shopping_list():
     create_application_session_keys()
 
     form = DeleteShoppingListForm()
+    form_item = ShoppingListItemForm()
+    form_delete = DeleteShoppingListItemForm()
 
     # if the user is not signed in, redirect and notify them
     if guest_users_redirect():
@@ -236,7 +238,10 @@ def view_shopping_list():
     return render_template("shopping-list/view.html",
                            title='View Shopping Lists',
                            items=session["shopping-lists"],
-                           form=form)
+                           items_of_list=session["shopping-list-items"],
+                           form=form,
+                           form_item=form_item,
+                           form_delete=form_delete)
 
 
 @app.route("/delete/shopping-list", methods=['POST'])
