@@ -24,6 +24,23 @@
 
 </style>
 
+<script>
+
+    $(document).ready(function(){
+        $(document).on("click", "div.shopping-list", function(){
+
+            var shopping_list_id = $(this).attr("id");
+
+            $("button.create-item").removeAttr("disabled");
+            $("input[name='shopping_list']").val( shopping_list_id );
+
+            $(".shopping-list-items").hide()
+            $(".shopping-list-items."+shopping_list_id).show()
+
+        });
+    });
+
+</script>
 <div class="col-xs-12" style="background-color: #fff">
 
     <div class="col-xs-12">
