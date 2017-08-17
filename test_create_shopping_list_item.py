@@ -162,5 +162,5 @@ class CreateShoppingListItemTests(unittest.TestCase):
                 rv3.status_code, 200,
                 "The create shopping list page was not loaded as expected")
             self.assertEqual(
-                False, exists,
+                True, exists,
                 "The shopping list item has been created without a shopping id")
