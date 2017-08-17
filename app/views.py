@@ -35,6 +35,17 @@ class ShoppingList(Abstract):
         self.id = self.get_time("shopping-lists")
 
 
+# class definition to store a shopping list item object
+class ShoppingListItem(Abstract):
+    def __init__(self, name, shopping_list):
+        self.name = str(name).title()
+        self.shopping_list = shopping_list
+        self.user_id = session["logged_in"]["id"]
+        self.checked = False
+        self.id = self.get_time("shopping-list-items")
+        self.time = datetime.now().strftime("%Y-%b-%d %H:%M")
+
+
 # method definition to create the applications session
 def create_application_session_keys():
     if "users" not in session:
