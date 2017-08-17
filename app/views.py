@@ -54,6 +54,9 @@ def create_application_session_keys():
     if "shopping-lists" not in session:
         session["shopping-lists"] = {}
 
+    if "shopping-list-items" not in session:
+        session["shopping-list-items"] = {}
+
     if "logged_in" not in session:
         session["logged_in"] = None
 
