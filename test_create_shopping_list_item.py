@@ -125,7 +125,7 @@ class CreateShoppingListItemTests(unittest.TestCase):
                 False, exists,
                 "The shopping list item been created without name")
 
-    def test_create_shopping_list_item_shopping_list_required(self):
+    def test_create_shopping_list_item_shopping_list_not_required(self):
 
         with app.test_client() as client:
             rv = client.post('/sign-up', data=dict(
@@ -159,7 +159,7 @@ class CreateShoppingListItemTests(unittest.TestCase):
                 rv2.status_code, 200,
                 "The login page was not loaded as expected")
             self.assertEqual(
-                rv3.status_code, 500,
+                rv3.status_code, 200,
                 "The create shopping list page was not loaded as expected")
             self.assertEqual(
                 False, exists,
