@@ -28,4 +28,4 @@ class DeleteShoppingListItemForm(FlaskForm):
 
 class ShoppingListItemForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
-    shopping_list = StringField('shopping_list', validators=[DataRequired()])
+    shopping_list = StringField('shopping_list')
