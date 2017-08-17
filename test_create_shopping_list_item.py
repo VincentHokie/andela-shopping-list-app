@@ -49,11 +49,13 @@ class CreateShoppingListItemTests(unittest.TestCase):
             for key in lists:
                 shopping_list = lists[key]
                 if shopping_list["name"] == "Babythings" and\
-                    shopping_list["shopping_list"] == 1 and\
+                    shopping_list["shopping_list"] == "1" and\
                     datetime.now() > datetime.strptime(shopping_list["time"],
                    "%Y-%b-%d %H:%M"):
                     exists = True
                     break
+
+            print(session["shopping-list-items"])
 
             self.assertEqual(
                 rv.status_code, 200,
@@ -117,7 +119,7 @@ class CreateShoppingListItemTests(unittest.TestCase):
                 rv2.status_code, 200,
                 "The login page was not loaded as expected")
             self.assertEqual(
-                rv3.status_code, 200,
+                rv3.status_code, 500,
                 "The create shopping list page was not loaded as expected")
             self.assertEqual(
                 False, exists,
@@ -157,7 +159,7 @@ class CreateShoppingListItemTests(unittest.TestCase):
                 rv2.status_code, 200,
                 "The login page was not loaded as expected")
             self.assertEqual(
-                rv3.status_code, 200,
+                rv3.status_code, 500,
                 "The create shopping list page was not loaded as expected")
             self.assertEqual(
                 False, exists,
