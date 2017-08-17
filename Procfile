@@ -1,1 +1,1 @@
-web: gunicorn --chdir heroku_views:app
+web: gunicorn heroku_views:app
