@@ -10,9 +10,9 @@ from .forms import LoginForm, SignUpForm, ShoppingListForm, ShoppingListItemForm
 
 class Abstract:
 
-    def get_time(self):
+    def get_time(self, session_key):
         created_id = os.urandom(10).hex()
-        while created_id in session["shopping-lists"]:
+        while created_id in session[session_key]:
             created_id = os.urandom(10).hex()
 
         return created_id
@@ -23,16 +23,16 @@ class User(Abstract):
         self.email = email
         self.username = username
         self.password = password
-        self.id = self.get_time()
+        self.id = self.get_time("users")
 
 
-# class definition to store a user object
+# class definition to store a shopping list object
 class ShoppingList(Abstract):
     def __init__(self, name):
         self.name = str(name).title()
         self.time = datetime.now().strftime("%Y-%b-%d %H:%M")
         self.user_id = session["logged_in"]["id"]
-        self.id = self.get_time()
+        self.id = self.get_time("shopping-lists")
 
 
 # method definition to create the applications session
