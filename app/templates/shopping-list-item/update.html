@@ -4,10 +4,10 @@
 
 <div class="col-xs-12" style="background-color: #fff">
 
-    <h1>Bucket List item update</h1>
-    <h4>Don't delete anything you'll regret forgetting!</h4>
+    <h1>Edit Shopping list item form</h1>
+    <h4>Shopping lists are a good way to keep track of expenditures!</h4>
 
-    <form action="" method="post" name="update-bucketlist-item">
+    <form action="/update/shopping-list/item/{{ shopping_list_id }}" method="post" role="form">
         {{ form.hidden_tag() }}
 
         <div class="row">
@@ -17,25 +17,16 @@
                     {% for error in form.name.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}<br>
-                    {{ form.name(placeholder="Bucket List item", class="form-input", required="required") }}
+                    <input placeholder="Shopping list item" class="form-control" required value="{{ name }}" name="name"/>
 
                 </div>
             </div>
-            <div class="col-xs-12">
-                <div class="form-group">
 
-                    {% for error in form.date.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}<br>
-                    {{ form.date(placeholder="Description", required="required", type="date", class="form-input") }}
-
-                </div>
-            </div>
             <div class="col-xs-6">
                 <div class="form-group">
                     <br>
                     <center>
-                        <button type="submit" name="Submit" class="btn btn-success">Update Bucket List item</button>
+                        <button type="submit" name="Submit" class="btn btn-success">Update Shopping List item</button>
                     </center>
                 </div>
             </div>
