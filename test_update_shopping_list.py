@@ -6,7 +6,7 @@ import unittest
 from datetime import datetime
 
 
-class SignUpTests(unittest.TestCase):
+class UpdateShoppingListTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
