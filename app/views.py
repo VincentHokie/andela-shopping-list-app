@@ -266,22 +266,27 @@ def delete_shopping_list():
 
 
 # shopping list items crud routes
-@app.route("/create/<shopping_list>/item", methods=['GET', 'POST'])
-def create_shopping_list_item(shopping_list):
+@app.route("/create/shopping-list/item", methods=['GET', 'POST'])
+def create_shopping_list_item():
 
     create_application_session_keys()
 
-    form = BucketListItemForm()
     # if the user is not signed in, redirect and notify them
     if guest_users_redirect():
         return redirect('/login')
 
-    form = shoppingListItemForm()
+    form = ShoppingListItemForm()
 
     if form.validate_on_submit():
-        flash('Login requested for un="%s", pw=%s' %
-              (form.username.data, str(form.password.data)))
-        return redirect('/index')
+
+        new_shopping_list_item = ShoppingListItem(form.name.data, form.shopping_list.data)
+        session["shopping-list-items"][new_shopping_list_item.id] = vars(new_shopping_list_item)
+
+        flash({"message":
+                "You have successfully created a shopping list item! "
+                "Select the shopping list to see it"})
+
+        return redirect('/view/shopping-lists')
 
     return render_template("shopping-list-item/create.html",
                            title='View Shopping List Items',
