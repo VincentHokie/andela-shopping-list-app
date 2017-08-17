@@ -19,4 +19,15 @@ Simply follow the following steps..
 6. In order to run tests, enter the ``` pytest ``` command with the virtual environment activated
 7. To run the application run ```python run.py ``` , it should be accessible from a browser at the url *http://127.0.0.1:5000/*
 
+### TravisCI
+[![Build Status](https://travis-ci.org/boennemann/badges.svg?branch=master)](https://travis-ci.org/boennemann/badges)
+
+
+### Coveralls
+[![Coverage Status](https://coveralls.io/repos/boennemann/badges/badge.svg)](https://coveralls.io/r/boennemann/badges)
+
+
+### Code Climate
+[![Code Climate](https://codeclimate.com/github/boennemann/badges.svg)](https://codeclimate.com/github/boennemann/badges)
+
 ## Enjoy
