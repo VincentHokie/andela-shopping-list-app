@@ -20,14 +20,14 @@ Simply follow the following steps..
 7. To run the application run ```python run.py ``` , it should be accessible from a browser at the url *http://127.0.0.1:5000/*
 
 ### TravisCI
-[![Build Status](https://travis-ci.org/VincentHokie/badges.svg?branch=master)](https://travis-ci.org/VincentHokie/andela-shopping-list-app)
+[![Build Status](https://travis-ci.org/VincentHokie/andela-shopping-list-app.svg?branch=master)](https://travis-ci.org/VincentHokie/andela-shopping-list-app)
 
 
 ### Coveralls
-[![Coverage Status](https://coveralls.io/repos/VincentHokie/andela-shopping-list-app/badge.svg)](https://coveralls.io/r/VincentHokie/andela-shopping-list-app)
+[![Coverage Status](https://coveralls.io/repos/VincentHokie/andela-shopping-list-app/andela-shopping-list-app.svg)](https://coveralls.io/r/VincentHokie/andela-shopping-list-app)
 
 
 ### Code Climate
-[![Code Climate](https://codeclimate.com/github/VincentHokie/badges.svg)](https://codeclimate.com/github/VincentHokie/andela-shopping-list-app)
+[![Code Climate](https://codeclimate.com/github/VincentHokie/andela-shopping-list-app.svg)](https://codeclimate.com/github/VincentHokie/andela-shopping-list-app)
 
 ## Enjoy
