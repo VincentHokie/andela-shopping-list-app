@@ -293,21 +293,32 @@ def create_shopping_list_item():
                            form=form)
 
 
-@app.route("/update/<shopping_list>/item/<item_id>", methods=['GET', 'POST'])
-def update_shopping_list_item(shopping_list, item_id):
+@app.route("/update/shopping-list/item/<item_id>", methods=['GET', 'POST'])
+def update_shopping_list_item(item_id):
 
     create_application_session_keys()
 
-    form = BucketListItemForm()
+    # if the user is not signed in, redirect and notify them
+    if guest_users_redirect():
+        return redirect('/login')
+
+    form = ShoppingListItemForm()
+
+    if item_id not in session["shopping-list-items"]:
+        flash({"message":'The item you want to update, does not exist!'})
+        return redirect('/view/shopping-lists')
 
     if form.validate_on_submit():
-        flash('Login requested for un="%s", pw=%s' %
-              (form.username.data, str(form.password.data)))
-        return redirect('/index')
+        session["shopping-list-items"][item_id]["name"] = form.name.data
+
+        flash({"message":'Update Successful!'})
+        return redirect('/view/shopping-lists')
 
     return render_template("shopping-list-item/update.html",
                            title='Update Shopping List item',
-                           form=form)
+                           form=form,
+                           name=session["shopping-list-items"][item_id]["name"],
+                           shopping_list_id=item_id)
 
 
 @app.route("/view/<shopping_list>/items", methods=['GET', 'POST'])
