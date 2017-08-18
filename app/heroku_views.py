@@ -246,7 +246,8 @@ def view_shopping_list():
                            items_of_list=session["shopping-list-items"],
                            form=form,
                            form_item=form_item,
-                           form_delete=form_delete)
+                           form_delete=form_delete,
+                           user_id=session["logged_in"]["id"])
 
 
 @app.route("/delete/shopping-list", methods=['POST'])
