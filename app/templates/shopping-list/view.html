@@ -55,9 +55,6 @@
             {% if items %}
 
             {% for item in items %}
-
-            {% if items_of_list[item]['user_id'] == user_id %}
-
             <div class="col-xs-12 shopping-list" id="{{ items[item]['id'] }}">
 
                 <div class="alert alert-default col-xs-10">
@@ -75,8 +72,6 @@
                 </form>
 
             </div>
-
-            {% endif %}
 
             {% endfor %}
 
@@ -129,9 +124,6 @@
                 {% if items_of_list %}
 
                 {% for item in items_of_list %}
-
-                {% if items_of_list[item]['user_id'] %}
-
                 <li class="list-group-item col-xs-12 shopping-list-items {{ items_of_list[item]['shopping_list'] }}" id="{{ items_of_list[item]['id'] }}">
 
                     <label class="col-xs-10"><input type="checkbox" class=""col-xs-12"
@@ -149,8 +141,6 @@
                     </form>
 
                 </li>
-                
-                {% endif %}
 
                 {% endfor %}
 
