@@ -24,7 +24,7 @@ Simply follow the following steps..
 
 
 ### Coveralls
-[![Coverage Status](https://coveralls.io/repos/VincentHokie/andela-shopping-list-app/andela-shopping-list-app.svg)](https://coveralls.io/r/VincentHokie/andela-shopping-list-app)
+[![Coverage Status](https://coveralls.io/repos/github/VincentHokie/andela-shopping-list-app/badge.svg?branch=master)](https://coveralls.io/github/VincentHokie/andela-shopping-list-app?branch=master)
 
 
 ### Code Climate
