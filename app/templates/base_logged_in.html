@@ -2,6 +2,10 @@
 
 {% block nav %}
 
+    <!--  link to navigation bar styling      -->
+    <link href="{{ url_for('static', filename='css/template_logged_in.css') }}" rel="stylesheet" />
+
+    <!--  navbar       -->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -13,5 +17,6 @@
         </ul>
       </div>
     </nav>
+    <!--  navbar end      -->
 
 {% endblock %}
