@@ -9,7 +9,7 @@
 <!-- sign up page container       -->
 <div class="container col-xs-12">
 
-    <!--        -->
+    <!-- flash message logic       -->
     {% with messages = get_flashed_messages() %}
     {% if messages %}
 
@@ -22,7 +22,7 @@
 
     {% endif %}
     {% endwith %}
-    <!--        -->
+    <!-- flash message logic end      -->
 
     <!-- left positioned image       -->
     <img src="{{ url_for('static', filename='images/shopping-list.jpg') }}" class="col-sm-6 hidden-xs" />
