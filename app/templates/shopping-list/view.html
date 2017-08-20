@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<!-- flash messages logic       -->
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 
@@ -14,85 +15,116 @@
 
 {% endif %}
 {% endwith %}
+<!-- flash messages logic end       -->
 
-<style type="text/css">
-    .alert { padding: 10px; }
-    .alert-default{ border: 1px solid #000; clear:left }
-    .alert-default:hover{ background-color: #dff0d8; border: none}
-    .shopping-list i { font-size: 24px; cursor:pointer }
-    .shopping-list-items { display:none; list-style-type: none }
 
-</style>
+<!-- shopping list page container       -->
+<div class="col-xs-12">
 
-<script>
+    <!-- shopping list panel/ container       -->
+    <div class="panel panel-default col-sm-6 col-xs-12" id="list-panel">
 
-    $(document).ready(function(){
-        $(document).on("click", "div.shopping-list", function(){
+        <!-- shopping list header       -->
+        <div class="panel-heading col-xs-12">
+            <h4 class="col-xs-10">Shopping lists</h4>
+            <a href="/create/shopping-list" class="btn btn-success col-xs-2" style="padding:10px 0"><i class="fa fa fa-plus-circle"></i></a>
+        </div>
+        <!-- shopping list header end      -->
 
-            var shopping_list_id = $(this).attr("id");
+        <!-- shopping lists       -->
+        <div class="panel-body col-xs-12">
 
-            $("button.create-item").removeAttr("disabled");
-            $("input[name='shopping_list']").val( shopping_list_id );
-
-            $(".shopping-list-items").hide()
-            $(".shopping-list-items."+shopping_list_id).show()
-
-        });
-    });
-
-</script>
-<div class="col-xs-12" style="background-color: #fff">
-
-    <div class="col-xs-12">
-
-        <div class="col-sm-6 col-xs-12">
-
-            <h4 class="col-xs-12" style="margin-bottom:20px">Shopping lists</h4>
             <h5>Click a shopping list to see its items</h5>
 
-            <a href="/create/shopping-list" class="btn btn-success col-xs-6" style="margin-bottom:20px"><i class="fa fa fa-plus-circle"></i>Add New Shopping List</a>
-
+            <!-- logic to generate shopping lists      -->
             {% if items %}
 
             {% for item in items %}
-            <div class="col-xs-12 shopping-list" id="{{ items[item]['id'] }}">
 
-                <div class="alert alert-default col-xs-10">
+            <!-- shopping list container       -->
+            <div class="col-xs-12 shopping-list">
+
+                <!-- shopping list details       -->
+                <div class="alert alert-default col-md-10 col-xs-12" id="{{ items[item]['id'] }}">
                     <strong>{{ items[item]['name'] }}</strong> -  {{ items[item]['time'] }}
                 </div>
-                <a href="/update/shopping-list/{{ items[item]['id'] }}" class="col-xs-1" style="padding:0">
-                    <i class="fa fa-edit btn btn-primary"></i>
-                </a>
-                <form role="form" method="post" action="/delete/shopping-list" class="delete_form">
+                <!-- shopping list details end      -->
+
+                <!-- edit shopping list button       -->
+                <div class="col-md-1 col-xs-8" style="padding:0">
+                    <a href="/update/shopping-list/{{ items[item]['id'] }}" class="col-xs-12 btn btn-primary" style="padding:5px 0">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                </div>
+                <!-- edit shopping list button end      -->
+
+                <!-- form that deletes a shopping list       -->
+                <form role="form" method="post" action="/delete/shopping-list" class="delete_form col-md-1 col-xs-4" style="padding:0">
                     {{ form.hidden_tag() }}
                     <input type="hidden" value="{{ items[item]['id'] }}" name="id" />
-                    <button class="btn btn-danger col-xs-1" type="button">
+                    <button class="btn btn-danger col-xs-12" type="button" style="padding:5px 0">
                         <i class="fa fa-trash-o"></i>
                     </button>
                 </form>
+                <!-- form that deletes a shopping list end       -->
 
             </div>
+            <!-- shopping list container end       -->
 
             {% endfor %}
 
             {% endif %}
+            <!-- logic to generate shopping lists end      -->
 
         </div>
+        <!-- shopping lists end      -->
 
-        <div class="col-sm-6 hidden-xs">
+    </div>
+    <!-- shopping list panel/ container end       -->
 
 
-            <h4 class="col-xs-12" style="margin-bottom:20px">Shopping list - Item Name 2</h4>
-            <h4 class="col-xs-12" style="margin-bottom:20px">Items</h4>
+    <!-- shopping list items panel/ container       -->
+    <div class="panel panel-default col-sm-5 col-sm-offset-1 col-xs-12 hidden-xs" id="list-items-panel">
 
-            <div class="well well-sm col-xs-12">
+        <!-- panel header container       -->
+        <div class="panel-heading col-xs-12">
+
+            <!-- button for mobile phones to show shopping lists and hide items      -->
+            <button class="btn hidden-md hidden-lg hidden-sm col-xs-1" id="back-to-lists" style="padding:10px 0"><i class="fa fa-arrow-circle-left"></i></button>
+
+            <!-- panel header       -->
+            <h4 class="col-xs-10">Shopping list items</h4>
+
+            <!-- button that toggles the shopping list item form       -->
+            <button id="create-shopping-list-item" class="btn btn-success col-sm-2 col-xs-1" style="padding:10px 0"><i class="fa fa fa-plus-circle"></i></button>
+
+        </div>
+        <!-- panel header container       -->
+
+        <!-- panel body container       -->
+        <div class="panel-body">
+
+            <!-- header that shows currently selected shopping list       -->
+            <h4 class="col-xs-12">Shopping list - <span id="list-name"></span></h4>
+            <h4 class="col-xs-12">Items</h4>
+
+            <!-- shopping list item form container      -->
+            <div class="well well-sm col-xs-12" id="new-item-form">
+
+                <!-- shopping list item form header      -->
                 <h5>Enter shopping list item to add below!</h5>
+
+                <!-- shopping list item form       -->
                 <form action="/create/shopping-list/item" method="post" name="create-bucketlist">
                     {{ form_item.hidden_tag() }}
 
+                    <!-- csrf token       -->
                     <input type="hidden" value="" name="shopping_list" />
 
+                    <!-- form input container       -->
                     <div class="row">
+
+                        <!-- shopping list item name input logic       -->
                         <div class="col-xs-6">
                             <div class="form-group">
 
@@ -103,7 +135,9 @@
 
                             </div>
                         </div>
+                        <!-- shopping list item name input logic end       -->
 
+                        <!-- submit button container       -->
                         <div class="col-xs-6">
                             <div class="form-group">
                                 <br>
@@ -112,46 +146,75 @@
                                 </center>
                             </div>
                         </div>
+                        <!-- submit button container end       -->
 
                     </div>
-
+                    <!-- form input container end       -->
 
                 </form>
-            </div>
+                <!-- shopping list item form end      -->
 
+            </div>
+            <!-- shopping list item form container end      -->
+
+
+            <!-- container that holds shopping lists       -->
             <ul class="list-group col-xs-12">
 
+                <!-- logic to generate shopping list items       -->
                 {% if items_of_list %}
 
                 {% for item in items_of_list %}
-                <li class="list-group-item col-xs-12 shopping-list-items {{ items_of_list[item]['shopping_list'] }}" id="{{ items_of_list[item]['id'] }}">
 
-                    <label class="col-xs-10"><input type="checkbox" class=""col-xs-12"
-                    {% if items_of_list[item]["checked"] %} checked {% endif %}> {{ items_of_list[item]['name'] }} </label>
+                <!-- shopping list item container       -->
+                <li class="list-group-item col-xs-12 shopping-list-items {{ items_of_list[item]['shopping_list'] }}" id="{{ items_of_list[item]['id'] }}" style="padding:0">
 
-                    <a href="/update/shopping-list/item/{{ items_of_list[item]['id'] }}" class="col-xs-1" style="padding:0">
-                        <i class="fa fa-edit btn btn-primary"></i>
-                    </a>
-                    <form role="form" method="post" action="/delete/shopping-list-item" class="col-xs-1 delete_form" style="padding:0">
+                    <!-- shopping list item name and checkbox       -->
+                    <label class="col-md-10 col-xs-12" style="padding: 5px 0 5px 5px;"><input type="checkbox"
+                                                                                              {% if items_of_list[item]["checked"] %} checked {% endif %}> {{ items_of_list[item]['name'] }} </label>
+                    <!-- edit shopping list item button       -->
+                    <div class="col-md-1 col-xs-8" style="padding:0">
+                        <a href="/update/shopping-list/item/{{ items_of_list[item]['id'] }}" class="col-xs-12 btn btn-primary" style="padding:5px 0">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                    <!-- edit shopping list item button end      -->
+
+                    <!-- form that deletes a shopping list item       -->
+                    <form role="form" method="post" action="/delete/shopping-list-item" class="col-md-1 col-xs-4 delete_form" style="padding:0">
                         {{ form_delete.hidden_tag() }}
                         <input type="hidden" value="{{ items_of_list[item]['id'] }}" name="id" />
-                        <button class="btn btn-danger col-xs-12" type="button">
+                        <button class="btn btn-danger col-xs-12" type="button" style="padding: 5px 0;">
                             <i class="fa fa-trash-o"></i>
                         </button>
                     </form>
+                    <!-- form that deletes a shopping list item end       -->
 
                 </li>
+                <!-- shopping list item container end       -->
 
                 {% endfor %}
 
                 {% endif %}
+                <!-- logic to generate shopping list items end       -->
 
             </ul>
+            <!-- container that holds shopping lists end       -->
 
         </div>
+        <!-- panel body container end       -->
 
     </div>
+    <!-- shopping list items panel/ container end       -->
 
 </div>
+<!-- shopping list page container end       -->
+
+
+<!-- link to page styling       -->
+<link href="{{ url_for('static', filename='css/view-shopping-list.css') }}" rel="stylesheet" />
+
+<!-- link to page behaviour       -->
+<script src="{{ url_for('static', filename='js/view-shopping-list.js') }}"></script>
 
 {% endblock %}
