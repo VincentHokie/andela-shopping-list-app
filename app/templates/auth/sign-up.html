@@ -2,71 +2,85 @@
 
 {% block content %}
 
-    <div class="col-xs-12">
-
-        <h1>Sign Up</h1>
-
-        <div class="row">
-
-          <img src="{{ url_for('static', filename='images/shopping-list.jpg') }}" class="col-sm-6 hidden-xs" />
-
-          <div class="col-sm-6 col-xs-12" style="margin-top:30px">
-              <h4 class="col-xs-12">Fill this in real quick and begin using our awesome features</h4>
-
-              <form role="form" class="col-xs-12" style="margin-top:20px" method="post" action="/sign-up" name="sign-up">
-
-                  {{ form.hidden_tag() }}
-
-                  <div class="form-group">
-
-                      <label for="username">Username</label>
-
-                      {% for error in form.username.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                        {% endfor %}<br>
-                      {{ form.username(placeholder="vince-the-realest", class="form-control", required="required", id="username") }}
-
-                  </div>
-                  <div class="form-group">
-                      <label for="email">Email address</label>
-                      {{ form.email(placeholder="vince@hotmail.com", class="form-control", required="required", id="email", type="email") }}
-
-                  </div>
-                  <div class="form-group">
-
-                      <label for="password">Password</label>
-
-                      {% for error in form.password.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                        {% endfor %}<br>
-                        {{ form.password(placeholder="Enter Password", class="form-control", required="required", id="password") }}
+<link href="{{ url_for('static', filename='css/sign-up.css') }}" rel="stylesheet" />
 
 
-                  </div>
-                  <div class="form-group">
+<div class="container col-xs-12">
 
-                      <label for="password2">Password</label>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
 
-                       {% for error in form.password2.errors %}
-                            <span style="color: red;">[{{ error }}]</span>
-                            {% endfor %}<br>
+    {% for message in messages %}
+    <div class="alert alert-info message col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+        <strong><i class="fa fa-info-circle"></i></strong> {{ message.message }}
+    </div>
 
-                      {{ form.password2(placeholder="Re-Enter Password", class="form-control", required="required", id="password2") }}
+    {% endfor %}
 
-                  </div>
+    {% endif %}
+    {% endwith %}
 
-                  <div class="checkbox">
-                      <label>
-                          <input type="checkbox"> I have read and agreed to the Andela Shopping list terms and conditions
-                      </label>
-                  </div>
-                  <button type="submit" class="btn btn-info">Sign Up</button>
-              </form>
+    <img src="{{ url_for('static', filename='images/shopping-list.jpg') }}" class="col-sm-6 hidden-xs" />
 
-          </div>
-      </div>
+    <form class="col-sm-6 col-xs-12 form-sign-up form" action="/sign-up" name="sign-up" method="post">
 
-  </div>
+        {{ form.hidden_tag() }}
 
+        <h2 class="form-heading">Andela Shopping List</h2>
+        <p class="col-xs-12">Fill this in real quick and begin using our awesome features!</p>
+
+        <div class="input-wrap">
+
+            <div class="form-group">
+
+                    <label for="username">Username</label>
+
+                    {% for error in form.username.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}<br>
+                    {{ form.username(placeholder="vince-the-realest", class="form-control", required="required", id="username") }}
+
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    {{ form.email(placeholder="vince@hotmail.com", class="form-control", required="required", id="email", type="email") }}
+
+                </div>
+                <div class="form-group">
+
+                    <label for="password">Password</label>
+
+                    {% for error in form.password.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}<br>
+                    {{ form.password(placeholder="Enter Password", class="form-control", required="required", id="password") }}
+
+
+                </div>
+                <div class="form-group">
+
+                    <label for="password2">Password</label>
+
+                    {% for error in form.password2.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}<br>
+
+                    {{ form.password2(placeholder="Re-Enter Password", class="form-control", required="required", id="password2") }}
+
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" required> I have read and agreed to the Andela Shopping list terms and conditions
+                    </label>
+                </div>
+
+            <button class="btn btn-md btn-sign-up btn-block" type="submit">Sign Up</button>
+
+        </div>
+
+    </form>
+
+</div>
 
 {% endblock %}
