@@ -41,6 +41,9 @@
 
             {% for item in items %}
 
+            <!-- ensure only the user that created this list sees it       -->
+            {% if user == items[item]['user_id'] %}
+
             <!-- shopping list container       -->
             <div class="col-xs-12 shopping-list">
 
@@ -69,6 +72,9 @@
                 <!-- form that deletes a shopping list end       -->
 
             </div>
+
+            {% endif %}
+
             <!-- shopping list container end       -->
 
             {% endfor %}
@@ -166,6 +172,9 @@
 
                 {% for item in items_of_list %}
 
+                <!-- ensure only the user that created this list sees it       -->
+                {% if user == items_of_list[item]['user_id'] %}
+
                 <!-- shopping list item container       -->
                 <li class="list-group-item col-xs-12 shopping-list-items {{ items_of_list[item]['shopping_list'] }}" id="{{ items_of_list[item]['id'] }}" style="padding:0">
 
@@ -192,6 +201,8 @@
 
                 </li>
                 <!-- shopping list item container end       -->
+
+                {% endif %}
 
                 {% endfor %}
 
