@@ -108,6 +108,13 @@ def sign_up():
     form = SignUpForm()
 
     if form.validate_on_submit():
+
+        if form.password.data != form.password2.data:
+            flash({"message": "Your passwords don't match!"})
+            return render_template("auth/sign-up.html",
+                               title='Create Profile',
+                               form=form)
+
         new_user = User(
                 form.username.data,
                 form.password.data,
