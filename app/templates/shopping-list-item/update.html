@@ -2,40 +2,68 @@
 
 {% block content %}
 
-<div class="col-xs-12" style="background-color: #fff">
+<!--  page container      -->
+<div class="container col-xs-12">
 
-    <h1>Edit Shopping list item form</h1>
-    <h4>Shopping lists are a good way to keep track of expenditures!</h4>
+    <!--    flash message logic    -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
 
-    <form action="/update/shopping-list/item/{{ shopping_list_id }}" method="post" role="form">
+    {% for message in messages %}
+    <div class="alert alert-info message col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+        <strong><i class="fa fa-info-circle"></i></strong> {{ message.message }}
+    </div>
+
+    {% endfor %}
+
+    {% endif %}
+    {% endwith %}
+    <!--    flash message logic end   -->
+
+    <!--   shopping list item form     -->
+    <form class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 form" action="/update/shopping-list/item/{{ shopping_list_id }}" method="post" name="update-shoppinglist">
+
+        <!--   csrf token     -->
         {{ form.hidden_tag() }}
 
-        <div class="row">
+        <!--    form heading    -->
+        <h2 class="form-heading">Edit Andela Shopping list item</h2>
+
+        <!--    input element wrapper    -->
+        <div class="input-wrap">
+
+            <!--  shopping list name input logic    -->
             <div class="col-xs-12">
                 <div class="form-group">
 
                     {% for error in form.name.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}<br>
-                    <input placeholder="Shopping list item" class="form-control" required value="{{ name }}" name="name"/>
+                    <input placeholder="Shopping list" class="form-control" required value="{{ name }}" name="name"/>
 
                 </div>
             </div>
+            <!--  shopping list name input logic end   -->
 
-            <div class="col-xs-6">
+            <!--  create shopping list button    -->
+            <div class="col-xs-12">
                 <div class="form-group">
                     <br>
                     <center>
-                        <button type="submit" name="Submit" class="btn btn-success">Update Shopping List item</button>
+                        <button type="submit" name="Submit" class="btn btn-md btn-login btn-block">Update Shopping List Item</button>
                     </center>
                 </div>
             </div>
+            <!--  create shopping list button end    -->
 
         </div>
+        <!--    input element wrapper end   -->
 
 
     </form>
+    <!--   shopping list item form end     -->
 
 </div>
+<!--  page container end      -->
 
 {% endblock %}

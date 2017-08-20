@@ -2,40 +2,69 @@
 
 {% block content %}
 
-<div class="col-xs-12" style="background-color: #fff">
+<!--  page container      -->
+<div class="container col-xs-12">
 
-    <h1>New Shopping list form</h1>
-    <h4>Shopping lists are a good way to keep track of expenditures, don't leave anything out!</h4>
+    <!--    flash message logic    -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
 
-    <form action="/create/shopping-list" method="post" name="create-bucketlist">
+    {% for message in messages %}
+    <div class="alert alert-info message col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+        <strong><i class="fa fa-info-circle"></i></strong> {{ message.message }}
+    </div>
+
+    {% endfor %}
+
+    {% endif %}
+    {% endwith %}
+    <!--    flash message logic end   -->
+
+    <!--   shopping list form     -->
+    <form class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 form" action="/create/shopping-list" method="post" name="create-shoppinglist">
+
+        <!--   csrf token     -->
         {{ form.hidden_tag() }}
 
-        <div class="row">
+        <!--    form heading    -->
+        <h2 class="form-heading">New Andela Shopping list form</h2>
+
+        <!--    input element wrapper    -->
+        <div class="input-wrap">
+
+            <!--  shopping list name input logic    -->
             <div class="col-xs-12">
                 <div class="form-group">
 
                     {% for error in form.name.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}<br>
-                    {{ form.name(placeholder="Bucket List Name", class="form-input", required="required", class="form-input") }}
+                    {{ form.name(placeholder="Shopping List Name", class="form-control", required="required") }}
 
                 </div>
             </div>
+            <!--  shopping list name input logic end   -->
 
-            <div class="col-xs-6">
+            <!--  create shopping list button    -->
+            <div class="col-xs-12">
                 <div class="form-group">
                     <br>
                     <center>
-                        <button type="submit" name="Submit" class="btn btn-success">Create Bucket List</button>
+                        <button type="submit" name="Submit" class="btn btn-md btn-login btn-block">Create Shopping List</button>
                     </center>
                 </div>
             </div>
+            <!--  create shopping list button end    -->
 
         </div>
+        <!--    input element wrapper end   -->
 
 
     </form>
+    <!--   shopping list form end     -->
 
 </div>
+<!--  page container end      -->
+
 
 {% endblock %}
