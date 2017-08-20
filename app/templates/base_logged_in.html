@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block header %}
-    <!--  link to navigation bar styling      -->
-    <link href="{{ url_for('static', filename='css/template_logged_in.css') }}" rel="stylesheet" />
+<!--  link to navigation bar styling      -->
+<link href="{{ url_for('static', filename='css/template_logged_in.css') }}" rel="stylesheet" />
 
-    <!--  links to vex stylesheets      -->
-    <link href="{{ url_for('static', filename='css/vex.css') }}" rel="stylesheet" />
-    <link href="{{ url_for('static', filename='css/vex-theme-os.css') }}" rel="stylesheet" />
+<!--  links to vex stylesheets      -->
+<link href="{{ url_for('static', filename='css/vex.css') }}" rel="stylesheet" />
+<link href="{{ url_for('static', filename='css/vex-theme-os.css') }}" rel="stylesheet" />
 
 {% endblock %}
 
@@ -16,14 +16,23 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" href="#">Andela Shopping List</a>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><i class="fa fa-user"></i> Welcome  {{ session['logged_in'].username }} </a></li>
-            <li id="logoutButton"><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
-        </ul>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="fa fa-user"></i> Welcome  {{ session['logged_in'].username }} </a></li>
+                <li id="logoutButton"><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
+
+
 <!--  navbar end      -->
 
 {% endblock %}
