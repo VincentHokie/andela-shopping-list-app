@@ -248,7 +248,8 @@ def view_shopping_list():
                            items_of_list=session["shopping-list-items"],
                            form=form,
                            form_item=form_item,
-                           form_delete=form_delete)
+                           form_delete=form_delete,
+                           user=session["logged_in"]["id"])
 
 
 @app.route("/delete/shopping-list", methods=['POST'])
@@ -260,7 +261,6 @@ def delete_shopping_list():
     # if the user is not signed in, redirect and notify them
     if guest_users_redirect():
         return redirect('/login')
-
 
     if form.validate_on_submit():
         del session["shopping-lists"][form.id.data]
