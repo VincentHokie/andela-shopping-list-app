@@ -2,10 +2,13 @@
 
 {% block content %}
 
+<!--   login form styling import     -->
 <link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet" />
 
+<!--  page container      -->
 <div class="container col-xs-12">
 
+    <!--    flash message logic    -->
     {% with messages = get_flashed_messages() %}
     {% if messages %}
 
@@ -18,35 +21,48 @@
 
     {% endif %}
     {% endwith %}
+    <!--    flash message logic end   -->
 
+    <!--   login form     -->
     <form class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 form-login form" action="/login" method="post">
 
+        <!--   csrf token     -->
         {{ form.hidden_tag() }}
 
+        <!--    form heading    -->
         <h2 class="form-heading">Andela Shopping List</h2>
+
+        <!--    input element wrapper    -->
         <div class="input-wrap">
 
+            <!--    username input logic    -->
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}<br>
-
             {{ form.username(placeholder="Username", class="form-control", required="required", autofocus="autofocus") }}
 
+
+            <!--    password input logic    -->
             {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}<br>
-
             {{ form.password(placeholder="Enter Password", class="form-control", required="required") }}
 
+
+            <!--    sign in button    -->
             <button class="btn btn-md btn-login btn-block" type="submit">Sign in</button>
 
         </div>
+        <!--    input element wrapper end   -->
 
+        <!--   sign up redirect     -->
         <p class="col-xs-6 col-xs-offset-3">or <a href="/sign-up">Sign Up</a> if you dont have an account already</p>
 
     </form>
+    <!--   login form end    -->
 
 </div>
+<!--  page container end      -->
 
 
 {% endblock %}
