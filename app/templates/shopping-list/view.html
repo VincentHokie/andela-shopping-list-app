@@ -63,10 +63,10 @@
                 <a href="/update/shopping-list/{{ items[item]['id'] }}" class="col-xs-1" style="padding:0">
                     <i class="fa fa-edit btn btn-primary"></i>
                 </a>
-                <form role="form" method="post" action="/delete/shopping-list">
+                <form role="form" method="post" action="/delete/shopping-list" class="delete_form">
                     {{ form.hidden_tag() }}
                     <input type="hidden" value="{{ items[item]['id'] }}" name="id" />
-                    <button class="btn btn-danger col-xs-1" type="submit">
+                    <button class="btn btn-danger col-xs-1" type="button">
                         <i class="fa fa-trash-o"></i>
                     </button>
                 </form>
@@ -132,10 +132,10 @@
                     <a href="/update/shopping-list/item/{{ items_of_list[item]['id'] }}" class="col-xs-1" style="padding:0">
                         <i class="fa fa-edit btn btn-primary"></i>
                     </a>
-                    <form role="form" method="post" action="/delete/shopping-list-item" class="col-xs-1" style="padding:0">
+                    <form role="form" method="post" action="/delete/shopping-list-item" class="col-xs-1 delete_form" style="padding:0">
                         {{ form_delete.hidden_tag() }}
                         <input type="hidden" value="{{ items_of_list[item]['id'] }}" name="id" />
-                        <button class="btn btn-danger col-xs-12" type="submit">
+                        <button class="btn btn-danger col-xs-12" type="button">
                             <i class="fa fa-trash-o"></i>
                         </button>
                     </form>

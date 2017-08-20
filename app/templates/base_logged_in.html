@@ -1,22 +1,97 @@
 {% extends "base.html" %}
 
-{% block nav %}
-
+{% block header %}
     <!--  link to navigation bar styling      -->
     <link href="{{ url_for('static', filename='css/template_logged_in.css') }}" rel="stylesheet" />
 
-    <!--  navbar       -->
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Andela Shopping List</a>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><i class="fa fa-user"></i> Welcome  {{ session['logged_in'].username }} </a></li>
-          <li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
-        </ul>
-      </div>
-    </nav>
-    <!--  navbar end      -->
+    <!--  links to vex stylesheets      -->
+    <link href="{{ url_for('static', filename='css/vex.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/vex-theme-os.css') }}" rel="stylesheet" />
 
 {% endblock %}
+
+{% block nav %}
+
+<!--  navbar       -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Andela Shopping List</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><i class="fa fa-user"></i> Welcome  {{ session['logged_in'].username }} </a></li>
+            <li id="logoutButton"><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+        </ul>
+    </div>
+</nav>
+<!--  navbar end      -->
+
+{% endblock %}
+
+{% block scripts %}
+
+<!-- pop up dialog scripts -->
+<script src="{{ url_for('static', filename='js/vex.combined.min.js') }}"></script>
+<script>vex.defaultOptions.className = 'vex-theme-os'</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        //warn user before logging out
+        $(document).on("click", "#logoutButton", function(){
+
+            vex.dialog.defaultOptions.showCloseButton = true;
+            vex.dialog.defaultOptions.escapeButtonCloses = true;
+            vex.dialog.defaultOptions.overlayClosesOnClick = true;
+
+            vex.dialog.buttons.YES.text = 'Yes'
+            vex.dialog.buttons.NO.text = 'No, thank you!'
+
+            vex.dialog.confirm({
+                message: 'Are you sure you want to log out?',
+                callback: function (value) {
+
+                    if(value == true)
+                        window.location = "/logout";
+
+                }
+            });
+
+        });
+
+
+        //warn user before deleting an item
+        $(document).on("click", ".delete_form button", function(){
+
+            var but = $(this)
+
+            vex.dialog.defaultOptions.showCloseButton = true;
+            vex.dialog.defaultOptions.escapeButtonCloses = true;
+            vex.dialog.defaultOptions.overlayClosesOnClick = true;
+
+            vex.dialog.buttons.YES.text = 'Yes'
+            vex.dialog.buttons.NO.text = 'No, thank you!'
+
+            vex.dialog.confirm({
+                message: 'Are you sure you want to delete this item!?',
+                callback: function (value) {
+
+                    if(value == true)
+                        but.parents("form.delete_form").submit()
+
+                }
+            });
+
+        });
+
+    });
+</script>
+
+{% endblock %}
+
+<!--  recreate script tags for templates that extend/ inherit this one      -->
+{% block scripts2 %}
+
+{% endblock scripts2 %}
+<!--  recreate script tags for templates that extend/ inherit this one end     -->
