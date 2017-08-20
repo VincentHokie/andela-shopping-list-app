@@ -2,11 +2,14 @@
 
 {% block content %}
 
+<!-- sign up form styling       -->
 <link href="{{ url_for('static', filename='css/sign-up.css') }}" rel="stylesheet" />
 
 
+<!-- sign up page container       -->
 <div class="container col-xs-12">
 
+    <!--        -->
     {% with messages = get_flashed_messages() %}
     {% if messages %}
 
@@ -19,68 +22,91 @@
 
     {% endif %}
     {% endwith %}
+    <!--        -->
 
+    <!-- left positioned image       -->
     <img src="{{ url_for('static', filename='images/shopping-list.jpg') }}" class="col-sm-6 hidden-xs" />
 
+    <!-- sign up form       -->
     <form class="col-sm-6 col-xs-12 form-sign-up form" action="/sign-up" name="sign-up" method="post">
 
+        <!--  csrf input element      -->
         {{ form.hidden_tag() }}
 
+        <!--  form header      -->
         <h2 class="form-heading">Andela Shopping List</h2>
         <p class="col-xs-12">Fill this in real quick and begin using our awesome features!</p>
 
+        <!--  form input wrapper      -->
         <div class="input-wrap">
 
+            <!-- username logic       -->
             <div class="form-group">
 
-                    <label for="username">Username</label>
+                <label for="username">Username</label>
 
-                    {% for error in form.username.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}<br>
-                    {{ form.username(placeholder="vince-the-realest", class="form-control", required="required", id="username") }}
+                {% for error in form.username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}<br>
+                {{ form.username(placeholder="vince-the-realest", class="form-control", required="required", id="username") }}
 
-                </div>
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    {{ form.email(placeholder="vince@hotmail.com", class="form-control", required="required", id="email", type="email") }}
+            </div>
+            <!-- username logic end       -->
 
-                </div>
-                <div class="form-group">
+            <!-- email logic       -->
+            <div class="form-group">
+                <label for="email">Email address</label>
+                {{ form.email(placeholder="vince@hotmail.com", class="form-control", required="required", id="email", type="email") }}
 
-                    <label for="password">Password</label>
+            </div>
+            <!-- email logic end      -->
 
-                    {% for error in form.password.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}<br>
-                    {{ form.password(placeholder="Enter Password", class="form-control", required="required", id="password") }}
+            <!-- password logic       -->
+            <div class="form-group">
+
+                <label for="password">Password</label>
+
+                {% for error in form.password.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}<br>
+                {{ form.password(placeholder="Enter Password", class="form-control", required="required", id="password") }}
 
 
-                </div>
-                <div class="form-group">
+            </div>
+            <!-- password logic end       -->
 
-                    <label for="password2">Password</label>
+            <!-- password confirmation logic       -->
+            <div class="form-group">
 
-                    {% for error in form.password2.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}<br>
+                <label for="password2">Password</label>
 
-                    {{ form.password2(placeholder="Re-Enter Password", class="form-control", required="required", id="password2") }}
+                {% for error in form.password2.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}<br>
 
-                </div>
+                {{ form.password2(placeholder="Re-Enter Password", class="form-control", required="required", id="password2") }}
 
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" required> I have read and agreed to the Andela Shopping list terms and conditions
-                    </label>
-                </div>
+            </div>
+            <!-- password confirmation logic end       -->
 
+            <!-- terms and conditions checkbox       -->
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" required> I have read and agreed to the Andela Shopping list terms and conditions
+                </label>
+            </div>
+            <!-- terms and conditions checkbox end      -->
+
+            <!--  sign up button      -->
             <button class="btn btn-md btn-sign-up btn-block" type="submit">Sign Up</button>
 
         </div>
+        <!--  form input wrapper end     -->
 
     </form>
+    <!-- sign up form end       -->
 
 </div>
+<!-- sign up page container end       -->
 
 {% endblock %}
