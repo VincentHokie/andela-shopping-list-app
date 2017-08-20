@@ -53,7 +53,13 @@ body {
   .form .input-wrap {
     padding: 20px; }
 
-.form-login .btn-login {
+.container, img {
+  padding: 0 !important; }
+
+label {
+  font-size: 12px; }
+
+.form-sign-up .btn-sign-up {
   background: #f67a6e;
   color: #fff;
   text-transform: uppercase;
@@ -62,4 +68,4 @@ body {
   box-shadow: 0 4px #e56b60;
   margin-bottom: 20px; }
 
-/*# sourceMappingURL=login.css.map */
+/*# sourceMappingURL=sign-up.css.map */
