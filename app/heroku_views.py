@@ -113,6 +113,13 @@ def sign_up():
     form = SignUpForm()
 
     if form.validate_on_submit():
+
+        if form.password.data != form.password2.data:
+            flash({"message": "Your passwords don't match!"})
+            return render_template("auth/sign-up.html",
+                               title='Create Profile',
+                               form=form)
+
         new_user = User(
                 form.username.data,
                 form.password.data,
@@ -246,7 +253,8 @@ def view_shopping_list():
                            items_of_list=session["shopping-list-items"],
                            form=form,
                            form_item=form_item,
-                           form_delete=form_delete)
+                           form_delete=form_delete,
+                           user=session["logged_in"]["id"])
 
 
 @app.route("/delete/shopping-list", methods=['POST'])
@@ -258,7 +266,6 @@ def delete_shopping_list():
     # if the user is not signed in, redirect and notify them
     if guest_users_redirect():
         return redirect('/login')
-
 
     if form.validate_on_submit():
         del session["shopping-lists"][form.id.data]
@@ -354,7 +361,7 @@ def delete_shopping_list_item():
         flash({"message": 'Delete of a shopping list item is successful!'})
         return redirect('/view/shopping-lists')
 
-    return redirect('/view/shopping-lists')
+return redirect('/view/shopping-lists')
 
 
 
