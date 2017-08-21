@@ -20,4 +20,4 @@ deploy:
   provider: heroku
   app: andela-shopping-list
   api_key:
-    secure: "5d68a28f-ccae-4774-8a44-47c183f2d76f"
+    secure: "1e9f74ec-b530-4a13-8f18-46c668e018f7"
