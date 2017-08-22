@@ -361,7 +361,7 @@ def delete_shopping_list_item():
         flash({"message": 'Delete of a shopping list item is successful!'})
         return redirect('/view/shopping-lists')
 
-return redirect('/view/shopping-lists')
+    return redirect('/view/shopping-lists')
 
 
 
